@@ -203,6 +203,14 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    var result = false;
+    iterator = iterator || _.identity;
+    _.each(collection, function(el){
+      if (iterator(el)){
+        result = true;
+      }
+    });
+    return result;
   };
 
 
