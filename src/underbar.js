@@ -203,14 +203,15 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-    var result = false;
     iterator = iterator || _.identity;
-    _.each(collection, function(el){
+    var count = 0;
+    _.every(collection, function(el){
       if (iterator(el)){
-        result = true;
+        count++;
       }
+      return true;
     });
-    return result;
+    return count > 0;
   };
 
 
@@ -380,6 +381,7 @@ var _ = {};
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
