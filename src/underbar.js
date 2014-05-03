@@ -433,6 +433,14 @@ var _ = {};
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    var main = arguments[0];
+    var check = _.flatten(Array.prototype.slice.call(arguments, 1));
+    return _.reduce(main, function(a, b){
+      if (_.indexOf(check, b) === -1){
+        a.push(b);
+      }
+      return a;
+    }, []);
   };
 
 
