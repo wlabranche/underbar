@@ -392,7 +392,19 @@ var _ = {};
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
-
+    //what does the result arg even do here?
+    result = [];
+    var squish = function(array){
+      _.each(array, function(el){
+        if (Array.isArray(el)){
+          squish(el);
+        }else{
+          result.push(el);
+        }
+      });
+    };
+    squish(nestedArray);
+    return result;
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
