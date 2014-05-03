@@ -410,6 +410,24 @@ var _ = {};
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
   _.intersection = function() {
+    var check = Array.prototype.slice.call(arguments);
+    var result = [];
+    //build object
+    var list = _.reduce(_.flatten(check), function(a, b){
+      if (a[b] === undefined){
+        a[b] = 1;
+      }else{
+        a[b]++;
+      }
+      return a;
+    }, {});
+    //parse object
+    _.each(list, function(el, pos){
+      if (list[pos] === check.length){
+        result.push(pos);
+      }
+    });
+    return result;
   };
 
   // Take the difference between one array and a number of other arrays.
