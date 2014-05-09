@@ -189,7 +189,7 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    if (Object.keys(collection).keys === 0){return true;}
+
     iterator = iterator || _.identity;
     return _.reduce(collection, function(a, b){
       if (a){
