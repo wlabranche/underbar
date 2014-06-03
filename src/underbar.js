@@ -105,13 +105,16 @@ var _ = {};
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-    var result = [];
-    _.each(array, function(el, pos, collection){
-      if (_.indexOf(collection, el) === pos){
-        result.push(el);
-      }
+
+    var hash = {};
+    var results = [];
+
+    _.each(array, function(item){
+      hash[item] || results.push(item);
+      hash[item] = true;
     });
-    return result;
+    return results;
+
   };
 
 
