@@ -199,13 +199,22 @@ var _ = {};
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
 
-    iterator = iterator || _.identity;
-    return _.reduce(collection, function(a, b){
-      if (a){
-        a = iterator(b);
+    iterator = iterator|| _.identity;
+    // var temp = _.filter(collection, function(item){
+    //   return iterator(item);
+    // });
+    // if (temp.length === collection.length){
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+    return _.reduce(collection, function(acc, item){
+      if(acc){
+        acc = iterator(item);
       }
-      return (!!a);
-    }, true);
+      return !!acc;
+    },true);
+
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
